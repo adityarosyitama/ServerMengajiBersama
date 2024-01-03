@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
     </head>
     <body>
     <div>
-    <h1>Homepage server MengajiBersama.apk ${path}</h1>
+    <h1>Homepage server MengajiBersama.apk</h1>
     </div>
     </body>
     </html>
