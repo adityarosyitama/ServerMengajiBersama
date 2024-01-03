@@ -32,7 +32,8 @@ app.get("/", (req, res) => {
     </html>
     `;
     console.log('Time: ', Date.now());
-    res.send(htmlView);
+    res.setHeader('Content-Type', 'text/html');
+    res.end(htmlView);
 });
 
 app.use('/login', require('./login/index'))
