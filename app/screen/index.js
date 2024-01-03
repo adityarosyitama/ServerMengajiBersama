@@ -5,10 +5,10 @@ const helmet = require('helmet');
 const cors = require('cors');
 const PORT = 3000;
 const middlewares = require('../utils/middlewares/middlewares');
-const connectionDB = require("../utils/mongoDB/mongoose"); 
+const connectionDB = require("../utils/mongoDB/mongoose");
 
 require('dotenv').config();
-connectionDB(); 
+connectionDB();
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());
@@ -19,22 +19,24 @@ app.use(express.json());
 //     next();
 //   });
 
-app.get("/", (req, res) => {
+app.get("/", (req, res, next) => {
     const htmlView = `
-   <!DOCTYPE html>
-   <html>
-     <head>
-       <title>Homepage</title>
-     </head>
-     <body>
-       <div>
-         <h1>Homepage server MengajiBersama.apk</h1>
-       </div>
-     </body>
-   </html>
- `;
+    <!DOCTYPE html>
+    <html>
+    <head>
+    <title>Homepage</title>
+    </head>
+    <body>
+    <div>
+    <h1>Homepage server MengajiBersama.apk</h1>
+    </div>
+    </body>
+    </html>
+    `;
 
- res.send(htmlView);
+    console.log('Time: ', Date.now());
+    next()
+    res.send(htmlView);
 });
 
 app.use('/login', require('./login/index'))
