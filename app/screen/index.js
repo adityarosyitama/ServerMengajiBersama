@@ -4,8 +4,7 @@ const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const PORT = 3000;
-const middlewares = require('../utils/middlewares/middlewares');
-const connectionDB = require("../utils/mongoDB/mongoose");
+const middlewares = require('../utils/middlewares/middlewares');\
 
 app.use(morgan('dev'));
 app.use(helmet());
@@ -15,7 +14,6 @@ app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 app.listen(PORT, () => console.log(`Run in port http://localhost:${PORT}/`));
 require('dotenv').config();
-connectionDB();
 
 app.get("/", (req, res) => {
     const htmlView = `
