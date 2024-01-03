@@ -1,5 +1,21 @@
-const app = require('express')();
-const { v4 } = require('uuid');
+const express = require('express')
+const app = express()
+const morgan = require('morgan');
+const helmet = require('helmet');
+const cors = require('cors');
+const PORT = 3000;
+const middlewares = require('../utils/middlewares/middlewares');
+const connectionDB = require("../utils/mongoDB/mongoose");
+
+app.use(morgan('dev'));
+app.use(helmet());
+app.use(cors());
+app.use(express.json());
+app.use(middlewares.notFound);
+app.use(middlewares.errorHandler);
+app.listen(PORT, () => console.log(`Run in port http://localhost:${PORT}/`));
+require('dotenv').config();
+connectionDB();
 
 app.get("/", (req, res) => {
     const htmlView = `
@@ -20,9 +36,7 @@ app.get("/", (req, res) => {
     res.end(htmlView);
 });
 
-app.get('/api/item/:slug', (req, res) => {
-  const { slug } = req.params;
-  res.end(`Item: ${slug}`);
-});
+app.use('/login', require('./login/index'))
 
-module.exports = app;
+
+module.exports = app
