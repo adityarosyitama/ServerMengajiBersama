@@ -14,10 +14,10 @@ app.use(helmet());
 app.use(cors());
 app.use(express.json());
 
-app.use((req, res, next) => {
-    console.log('Time: ', Date.now());
-    next();
-  });
+// app.use((req, res, next) => {
+//     console.log('Time: ', Date.now());
+//     next();
+//   });
 
 app.get("/", (req, res) => {
     const htmlView = `
