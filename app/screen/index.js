@@ -7,19 +7,17 @@ const PORT = 3000;
 const middlewares = require('../utils/middlewares/middlewares');
 const connectionDB = require("../utils/mongoDB/mongoose");
 
-require('dotenv').config();
-connectionDB();
 app.use(morgan('dev'));
 app.use(helmet());
 app.use(cors());
 app.use(express.json());
+app.use(middlewares.notFound);
+app.use(middlewares.errorHandler);
+app.listen(PORT, () => console.log(`Run in port http://localhost:${PORT}/`));
+require('dotenv').config();
+connectionDB();
 
-// app.use((req, res, next) => {
-//     console.log('Time: ', Date.now());
-//     next();
-//   });
-
-app.get("/", (req, res, next) => {
+app.get((req, res, next) => {
     const htmlView = `
     <!DOCTYPE html>
     <html>
@@ -41,8 +39,5 @@ app.get("/", (req, res, next) => {
 
 app.use('/login', require('./login/index'))
 
-app.use(middlewares.notFound);
-app.use(middlewares.errorHandler);
-app.listen(PORT, () => console.log(`Run in port http://localhost:${PORT}/`));
 
 module.exports = app
