@@ -44,3 +44,5 @@ app.use('/login', require('./login/index'))
 app.use(middlewares.notFound);
 app.use(middlewares.errorHandler);
 app.listen(PORT, () => console.log(`Run in port http://localhost:${PORT}/`));
+
+module.exports = app
