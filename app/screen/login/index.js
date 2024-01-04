@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
     <!DOCTYPE html>
     <html>
     <head>
-    <title>Homepage</title>
+    <title>Login</title>
     </head>
     <body>
     <div>
