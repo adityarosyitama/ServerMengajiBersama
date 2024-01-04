@@ -1,11 +1,11 @@
 const express = require('express')
 const app = express()
+const connectionDB = require("../utils/mongoDB/mongoose");
 const morgan = require('morgan');
 const helmet = require('helmet');
 const cors = require('cors');
 const PORT = 3000;
 const middlewares = require('../utils/middlewares/middlewares');
-const connectionDB = require("../utils/mongoDB/mongoose");
 
 app.use(morgan('dev'));
 app.use(helmet());
