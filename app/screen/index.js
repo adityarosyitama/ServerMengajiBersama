@@ -26,4 +26,6 @@ app.get('/api/item/:slug', (req, res) => {
   res.end(`Item: ${slug}`);
 });
 
+app.use('/login', require('./login/index'))
+
 module.exports = app;
